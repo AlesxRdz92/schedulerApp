@@ -3,8 +3,8 @@ const { Slot } = require('./../models/slot');
 const Nexmo = require('nexmo');
 
 const nexmo = new Nexmo({
-    apiKey: '',
-    apiSecret: ''
+    apiKey: 'aaaaa',
+    apiSecret: 'aaaaaaa'
 });
 
 const appointmentController = {
@@ -19,14 +19,14 @@ const appointmentController = {
             slot_date: req.body.slot_date,
             created_at: Date.now()
         }).save().then(slot => {
-            new Appointment({
+            return new Appointment({
                 name: req.body.name,
                 email: req.body.email,
                 phone: req.body.phone,
                 slots: slot._id
             }).save().then(appointment => {
-                sendSMS(appointment);
-                Appointment.findById(appointment._id)
+                //sendSMS(appointment);
+                return Appointment.findById(appointment._id)
                     .populate('slots')
                     .then(result => res.json(result));
             });

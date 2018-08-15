@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const Slot = require('./slot');
 
 const AppointmentSchema = new mongoose.Schema({
     name: {
@@ -22,8 +23,10 @@ const AppointmentSchema = new mongoose.Schema({
         required: true,
     },
     slots: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Slot'
-    }
+    },
+    created_at: Date
 });
 
 const Appointment = mongoose.model('Appointment', AppointmentSchema);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const slotSchema = new slotSchema({
+const slotSchema = new mongoose.Schema({
     slot_time: String,
     slot_date: String,
     created_at: Date
